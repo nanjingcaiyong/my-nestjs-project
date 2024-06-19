@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { initLiquid } from '../packages/utils/liquid';
+import { initLiquid } from './packages/utils/liquid';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
@@ -11,4 +11,5 @@ async function bootstrap() {
   app.engine('liquid', liquidIns.express());
   await app.listen(process.env.SERVER_PORT);
 }
+
 bootstrap();

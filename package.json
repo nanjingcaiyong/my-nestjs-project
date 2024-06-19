@@ -14,7 +14,7 @@
     "dev:sit": "cross-env NODE_ENV=development API_ENV=sit nest start --debug --watch",
     "dev:pre": "cross-env NODE_ENV=development API_ENV=pre nest start --debug --watch",
     "dev:prod": "cross-env NODE_ENV=development API_ENV=prod nest start --debug --watch",
-    "start:prod": "node dist/main"
+    "start:prod": "cross-env NODE_ENV=development API_ENV=prod node dist/main"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -46,7 +46,7 @@
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.3"
+    "typescript": "^5.3.3"
   },
   "jest": {
     "moduleFileExtensions": [

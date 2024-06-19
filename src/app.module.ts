@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './controllers/app.controller';
 import { AppService } from './services/app.service';
-import { CupsheMiddleware } from '../packages/middleware/cupshe.middleware';
+import { CupsheMiddleware } from './packages/middleware/cupshe.middleware';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
