@@ -9,6 +9,6 @@ async function bootstrap() {
   app.setViewEngine('liquid');
   app.setBaseViewsDir('src/views/pages');
   app.engine('liquid', liquidIns.express());
-  await app.listen(3000);
+  await app.listen(process.env.SERVER_PORT);
 }
 bootstrap();
