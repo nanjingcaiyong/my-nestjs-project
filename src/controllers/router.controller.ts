@@ -2,7 +2,7 @@ import { Controller, Get, Render } from '@nestjs/common';
 import { AppService } from '../services/app.service';
 
 @Controller()
-export class AppController {
+export class RouterController {
   constructor(private readonly appService: AppService) {}
 
   @Render('Home')

@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { AppController } from './controllers/app.controller';
+import { controllers } from './controllers';
 import { AppService } from './services/app.service';
 import { CupsheMiddleware } from './packages/middleware/cupshe.middleware';
 import { ConfigModule } from '@nestjs/config';
@@ -11,7 +11,7 @@ import { ConfigModule } from '@nestjs/config';
       envFilePath: [`.env.${process.env.API_ENV}`, '.env'],
     }),
   ],
-  controllers: [AppController],
+  controllers: controllers,
   providers: [AppService],
 })
 export class AppModule implements NestModule {
