@@ -1,8 +1,10 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { controllers } from './controllers';
 import { AppService } from './services/app.service';
+import { ExceptionFilter } from './packages/filter/exception.filter';
 import { CupsheMiddleware } from './packages/middleware/cupshe.middleware';
 import { ConfigModule } from '@nestjs/config';
+import { APP_FILTER } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -12,7 +14,13 @@ import { ConfigModule } from '@nestjs/config';
     }),
   ],
   controllers: controllers,
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: ExceptionFilter,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
