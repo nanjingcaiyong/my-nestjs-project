@@ -1,0 +1,7 @@
+[
+  {
+    "name": "query",
+    "method": "get",
+    "path": "/queryInfo"
+  }
+]

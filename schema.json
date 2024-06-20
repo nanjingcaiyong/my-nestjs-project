@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": ["object", "array"],
+  "items": {
+    "$ref": "#"
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "name": {
+      "type": "string",
+      "title": "接口名称",
+      "minLength": 1
+    },
+    "method": {
+      "type": "string",
+      "title": "请求方法",
+      "description": "支持的 HTTP 请求方法。目前支持 'DELETE'、'GET'、'HEAD'、'PATCH'、'POST'、'PUT' 以及 'OPTIONS'。它还可以是一个 HTTP 方法的数组。",
+      "default": "get",
+      "enum": ["get", "post", "put", "delete", "options", "patch", "head"]
+    },
+    "path": {
+      "type": "string",
+      "title": "请求路径",
+      "minLength": 1
+    }
+  },
+  "properties": {
+    "method": {
+      "$ref": "#/definitions/method"
+    },
+    "path": {
+      "$ref": "#/definitions/path"
+    },
+    "name": {
+      "$ref": "#/definitions/name"
+    }
+  },
+  "required": ["name", "method", "path"]
+}
