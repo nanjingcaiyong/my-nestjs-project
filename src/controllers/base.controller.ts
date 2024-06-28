@@ -17,8 +17,8 @@ export class BaseController {
       result.retInfo = result.data;
       delete result.data;
     }
-    (result['success'] = status === ResultStatus.Success),
-      (result['retInfo'] = result['retInfo'] ?? ResultMessage[status]);
+    result['success'] = status === ResultStatus.Success;
+    result['retInfo'] = result['retInfo'] ?? ResultMessage[status];
     return result;
   }
 }

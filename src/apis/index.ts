@@ -28,10 +28,3 @@ const apis = fs
   }, {});
 
 export default apis;
-
-// .forEach((file) => {
-//   const api = fs.readFileSync(`./src/apis/${file}`, 'utf8');
-//   console.log('===>', JSON.parse(api));
-// });
-
-// const http = initAxios();

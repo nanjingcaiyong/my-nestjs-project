@@ -5,7 +5,9 @@ import { ExceptionFilter } from '@/packages/filter';
 import { AuthGuard } from '@/packages/guards';
 import { CupsheMiddleware } from '@/packages/middleware/cupshe.middleware';
 import { ConfigModule } from '@nestjs/config';
-import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { LoggerInterceptor } from '@/packages/interceptors';
+import { ValidatorPipe } from '@/packages/pipes';
 
 @Module({
   imports: [
@@ -24,6 +26,14 @@ import { APP_FILTER, APP_GUARD } from '@nestjs/core';
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggerInterceptor,
+    },
+    {
+      provide: APP_PIPE,
+      useClass: ValidatorPipe,
     },
   ],
 })
