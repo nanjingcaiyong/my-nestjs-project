@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { controllers } from './controllers';
 import { AppService } from './services/app.service';
-import { ExceptionFilter } from '@/packages/filter';
+import { ExceptionFilter, UnloginFilter } from '@/packages/filter';
 import { AuthGuard } from '@/packages/guards';
 import { CupsheMiddleware } from '@/packages/middleware/cupshe.middleware';
 import { ConfigModule } from '@nestjs/config';
@@ -34,6 +34,10 @@ import { ValidatorPipe } from '@/packages/pipes';
     {
       provide: APP_PIPE,
       useClass: ValidatorPipe,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: UnloginFilter,
     },
   ],
 })
