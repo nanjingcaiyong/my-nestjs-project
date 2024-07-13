@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文件切片上传</title>
+    <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <input type="file" id="fileInput" />
+
+    <script>
+      const fileInput = document.querySelector('#fileInput');
+      const chunkSize = 20 * 1024;
+      fileInput.onchange = async function () {
+        const file = fileInput.files[0];
+        console.log(file);
+        const chunks = [];
+        const tasks = [];
+        let startPos = 0;
+
+        while (startPos < file.size) {
+          chunks.push(file.slice(startPos, startPos + chunkSize));
+          startPos += chunkSize;
+        }
+        const randomStr = Math.random().toString().slice(2, 8);
+        chunks.map((chunk, index) => {
+          const data = new FormData();
+          data.set('name', randomStr + '_' + file.name + '-' + index);
+          data.append('files', chunk);
+          tasks.push(axios.post('http://localhost:3000/file/sharding', data));
+        });
+        await Promise.all(tasks);
+        axios.get(
+          'http://localhost:3000/file/merge?name=' +
+            randomStr +
+            '_' +
+            file.name,
+        );
+      };
+    </script>
+  </body>
+</html>
